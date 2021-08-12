@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using System.Collections;
 using System.IO;
+using UnityEngine;
 using UnityEngine.Networking;
+
 namespace HitSoundChanger
 {
     public class HitSoundCollection
     {
         public string name;
         public string folderPath;
+
         public string containedSounds
         {
             get
             {
-                string result = "";
+                var result = string.Empty;
                 if (shortHitSoundEffects != null || longHitSoundEffects != null)
                 {
                     result = "Hit";
@@ -37,23 +34,25 @@ namespace HitSoundChanger
         public AudioClip[] shortHitSoundEffects;
         public AudioClip[] longHitSoundEffects;
         public AudioClip[] badHitSoundEffects;
+
         public HitSoundCollection()
         {
         }
+
         public HitSoundCollection(string path)
         {
             folderPath = path;
             name = new DirectoryInfo(path).Name;
-
         }
 
         public IEnumerator LoadSounds()
         {
             if (shortHitSoundEffects == null || longHitSoundEffects == null)
+            {
                 if (File.Exists(folderPath + "/HitSound.ogg"))
                 {
-                    string url1 = "file:///" + folderPath + "/HitSound.ogg";
-                    UnityWebRequest www1 = UnityWebRequestMultimedia.GetAudioClip(url1, AudioType.OGGVORBIS);
+                    var url1 = "file:///" + folderPath + "/HitSound.ogg";
+                    var www1 = UnityWebRequestMultimedia.GetAudioClip(url1, AudioType.OGGVORBIS);
                     AudioClip hitAudio = null;
                     yield return www1.SendWebRequest();
 
@@ -67,11 +66,14 @@ namespace HitSoundChanger
                         longHitSoundEffects = new AudioClip[] { hitAudio };
                     }
                 }
+            }
+
             if (badHitSoundEffects == null)
+            {
                 if (File.Exists(folderPath + "/BadHitSound.ogg"))
                 {
-                    string url2 = "file:///" + folderPath + "/BadHitSound.ogg";
-                    UnityWebRequest www2 = UnityWebRequestMultimedia.GetAudioClip(url2, AudioType.OGGVORBIS);
+                    var url2 = "file:///" + folderPath + "/BadHitSound.ogg";
+                    var www2 = UnityWebRequestMultimedia.GetAudioClip(url2, AudioType.OGGVORBIS);
                     AudioClip badHitAudio = null;
                     yield return www2.SendWebRequest();
 
@@ -84,6 +86,7 @@ namespace HitSoundChanger
                         badHitSoundEffects = new AudioClip[] { badHitAudio };
                     }
                 }
+            }
         }
     }
 }

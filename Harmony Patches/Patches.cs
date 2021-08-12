@@ -1,15 +1,12 @@
-﻿using System;
+﻿using HarmonyLib;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
 using UnityEngine;
+
 namespace HitSoundChanger.Harmony_Patches
 {
     [HarmonyPatch(typeof(NoteCutSoundEffect))]
     [HarmonyPatch("Awake", MethodType.Normal)]
-    class BadCutSoundPatch
+    internal class BadCutSoundPatch
     {
         public static void Prefix(ref AudioClip[] ____badCutSoundEffectAudioClips)
         {
@@ -25,16 +22,14 @@ namespace HitSoundChanger.Harmony_Patches
             }
             else
             {
-            ____badCutSoundEffectAudioClips = Plugin.currentHitSound.badHitSoundEffects;
+                ____badCutSoundEffectAudioClips = Plugin.currentHitSound.badHitSoundEffects;
             }
-
-
         }
     }
 
     [HarmonyPatch(typeof(NoteCutSoundEffectManager))]
     [HarmonyPatch("Start", MethodType.Normal)]
-    class HitSoundsPatch
+    internal class HitSoundsPatch
     {
         public static void Prefix(ref AudioClip[] ____longCutEffectsAudioClips, ref AudioClip[] ____shortCutEffectsAudioClips)
         {
@@ -57,11 +52,9 @@ namespace HitSoundChanger.Harmony_Patches
             }
             else
             {
-            ____longCutEffectsAudioClips = Plugin.currentHitSound.longHitSoundEffects;
-            ____shortCutEffectsAudioClips = Plugin.currentHitSound.shortHitSoundEffects;
+                ____longCutEffectsAudioClips = Plugin.currentHitSound.longHitSoundEffects;
+                ____shortCutEffectsAudioClips = Plugin.currentHitSound.shortHitSoundEffects;
             }
-
-
         }
     }
 }

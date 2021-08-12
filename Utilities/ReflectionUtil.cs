@@ -141,7 +141,6 @@ namespace HitSoundChanger.Utilities
             }
             catch (Exception)
             {
-
             }
 
             copy.enabled = false;
@@ -195,5 +194,4 @@ namespace HitSoundChanger.Utilities
             }
         }
     }
-
 }

@@ -1,13 +1,15 @@
 ﻿using BeatSaberMarkupLanguage.MenuButtons;
 using System;
 using UnityEngine;
+
 namespace HitSoundChanger.UI
 {
-    class HitSoundChangerUI : MonoBehaviour
+    internal class HitSoundChangerUI : MonoBehaviour
     {
         internal SoundListView _soundListViewController;
         internal HitSoundChanger.UI.SoundListFlowCoordinator _soundListFlow;
         public static HitSoundChangerUI _instance;
+
         internal static void OnLoad()
         {
             if (_instance != null)
@@ -40,7 +42,6 @@ namespace HitSoundChanger.UI
         {
             Utilities.Logging.Log.Debug("Adding HitSounds button");
             MenuButtons.instance.RegisterButton(new MenuButton("HitSounds", "Change HitSounds Here!", HitSoundButtonPressed, true));
-
         }
 
         internal void ShowSoundListFlow()
@@ -52,7 +53,6 @@ namespace HitSoundChanger.UI
 
         private void HitSoundButtonPressed()
         {
-            //  Logger.logger.Info("Saber Menu Button Pressed");
             ShowSoundListFlow();
         }
     }
