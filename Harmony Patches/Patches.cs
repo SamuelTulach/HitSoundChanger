@@ -6,7 +6,7 @@ namespace HitSoundChanger.Harmony_Patches
 {
     [HarmonyPatch(typeof(NoteCutSoundEffect))]
     [HarmonyPatch("Awake", MethodType.Normal)]
-    internal class BadCutSoundPatch
+    public class BadCutSoundPatch
     {
         public static void Prefix(ref AudioClip[] ____badCutSoundEffectAudioClips)
         {
@@ -29,7 +29,7 @@ namespace HitSoundChanger.Harmony_Patches
 
     [HarmonyPatch(typeof(NoteCutSoundEffectManager))]
     [HarmonyPatch("Start", MethodType.Normal)]
-    internal class HitSoundsPatch
+    public class HitSoundsPatch
     {
         public static void Prefix(ref AudioClip[] ____longCutEffectsAudioClips, ref AudioClip[] ____shortCutEffectsAudioClips)
         {
