@@ -4,7 +4,7 @@ This is an updated and cleaned up fork of [Kylemc1413 HitSoundChanger](https://g
 ![screenshot](screenshot.png)
 
 ## Installation
-Make sure that you have core mods installed with [ModAssistant](https://github.com/Assistant/ModAssistant). Then place HitSoundChanger.dll into Plugins directory in the game folder.
+Make sure that you have core mods installed with [ModAssistant](https://github.com/Assistant/ModAssistant) (BSIPA, BS Utils, BSML). Then place HitSoundChanger.dll into Plugins directory in the game folder.
 
 ## Usage
 First, you will need to find hitsounds that you want to use and create a config. Please note that the hit sounds should have certain offset, otherwise it might seem like the sound is playied before you even hit the block. To download ready to use hit sounds, check out [BSMG discord's](https://discord.gg/beatsabermods) #game-sounds section.
