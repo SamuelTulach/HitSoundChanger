@@ -1,5 +1,5 @@
 # HitSoundChanger
-This is an updated and cleaned up fork of Kylemc1413 HitSoundChanger. As the name suggests, it is a BSIPA compatible mod that changes block hit sounds. 
+This is an updated and cleaned up fork of [Kylemc1413 HitSoundChanger](https://github.com/Kylemc1413/HitSoundChanger). As the name suggests, it is a BSIPA compatible mod that changes block hit sounds. 
 
 ![screenshot](screenshot.png)
 
