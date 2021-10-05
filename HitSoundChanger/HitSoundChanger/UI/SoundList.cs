@@ -1,22 +1,24 @@
 ﻿using BeatSaberMarkupLanguage.Attributes;
 using BeatSaberMarkupLanguage.Components;
+using BeatSaberMarkupLanguage.ViewControllers;
 using HMUI;
 using System.Linq;
 
 namespace HitSoundChanger.UI
 {
-    internal class SoundListView : BeatSaberMarkupLanguage.ViewControllers.BSMLResourceViewController
+    internal class SoundList : BSMLResourceViewController
     {
-        public override string ResourceName => "HitSoundChanger.UI.SoundList.bsml";
+        public override string ResourceName => string.Join(".", GetType().Namespace, GetType().Name);
 
         [UIComponent("soundList")]
-        public CustomListTableData customListTableData;
+        public CustomListTableData customListTableData = new CustomListTableData();
 
         [UIAction("soundSelect")]
         internal void SelectSound(TableView tableView, int row)
         {
             Plugin.currentHitSound = Plugin.hitSounds[row];
-            Plugin.Settings.SetString("HitSoundChanger", "Last Selected Sound", Plugin.hitSounds[row].folderPath);
+            //Plugin.Settings.SetString("HitSoundChanger", "Last Selected Sound", Plugin.hitSounds[row].folderPath);
+            Plugin.CurrentSettings.LastSelected = Plugin.hitSounds[row].folderPath;
         }
 
         protected override void DidDeactivate(bool removedFromHierarchy, bool screenSystemDisabling)
@@ -25,7 +27,7 @@ namespace HitSoundChanger.UI
         }
 
         [UIAction("#post-parse")]
-        internal void SetupSaberList()
+        internal void SetupSoundList()
         {
             customListTableData.data.Clear();
             foreach (var hitsound in Plugin.hitSounds)

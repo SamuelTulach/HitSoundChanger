@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using IPA;
+using IPA.Config;
+using IPA.Config.Stores;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +15,9 @@ namespace HitSoundChanger
     [Plugin(RuntimeOptions.SingleStartInit)]
     public class Plugin
     {
-        public static BS_Utils.Utilities.Config Settings = new BS_Utils.Utilities.Config("HitSoundChanger/HitSoundChanger");
+        internal static Plugin Instance { get; private set; }
+        internal static IPALogger Log { get; private set; }
+        internal static PluginSettings CurrentSettings;
 
         public static List<HitSoundCollection> hitSounds = new List<HitSoundCollection>();
         public static HitSoundCollection currentHitSound { get; internal set; }
@@ -21,6 +25,14 @@ namespace HitSoundChanger
         public static List<AudioClip> originalShortSounds;
         public static List<AudioClip> originalLongSounds;
         public static List<AudioClip> originalBadSounds;
+
+        [Init]
+        public Plugin(Config config, IPALogger logger)
+        {
+            Instance = this;
+            Log = logger;
+            CurrentSettings = config.Generated<PluginSettings>();
+        }
 
         [OnStart]
         public void OnApplicationStart()
@@ -31,15 +43,15 @@ namespace HitSoundChanger
             SharedCoroutineStarter.instance.StartCoroutine(LoadAudio());
         }
 
-        [Init]
-        public void Init(object thisIsNull, IPALogger pluginLogger)
+        [OnExit]
+        public void OnApplicationQuit()
         {
-            Utilities.Logging.Log = pluginLogger;
+            /**/
         }
 
         public IEnumerator LoadAudio()
         {
-            Utilities.Logging.Log.Notice("Attempting to load Audio files");
+            Log.Info("Attempting to load Audio files");
             var folderPath = Environment.CurrentDirectory + "/UserData/HitSoundChanger";
             if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
@@ -54,7 +66,7 @@ namespace HitSoundChanger
                 hitSounds.Add(newSounds);
             }
 
-            var lastSound = Settings.GetString("HitSoundChanger", "Last Selected Sound", "Default", true);
+            var lastSound = CurrentSettings.LastSelected;
             var lastSounds = hitSounds.FirstOrDefault(x => x.folderPath == lastSound) ?? hitSounds[0];
             currentHitSound = lastSounds;
         }

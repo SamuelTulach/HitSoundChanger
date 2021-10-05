@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HitSoundChanger.Harmony_Patches
+namespace HitSoundChanger.Patches
 {
     [HarmonyPatch(typeof(NoteCutSoundEffect))]
     [HarmonyPatch("Awake", MethodType.Normal)]

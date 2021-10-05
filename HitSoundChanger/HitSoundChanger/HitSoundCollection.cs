@@ -57,7 +57,7 @@ namespace HitSoundChanger
                     yield return www1.SendWebRequest();
 
                     if (www1.isNetworkError)
-                        Utilities.Logging.Log.Notice("Failed to load HitSound audio: " + www1.error);
+                        Plugin.Log.Error("Failed to load HitSound audio: " + www1.error);
                     else
                         hitAudio = DownloadHandlerAudioClip.GetContent(www1);
                     if (hitAudio != null)
@@ -78,7 +78,7 @@ namespace HitSoundChanger
                     yield return www2.SendWebRequest();
 
                     if (www2.isNetworkError)
-                        Utilities.Logging.Log.Notice("Failed to load HitSound audio: " + www2.error);
+                        Plugin.Log.Error("Failed to load HitSound audio: " + www2.error);
                     else
                         badHitAudio = DownloadHandlerAudioClip.GetContent(www2);
                     if (badHitAudio != null)

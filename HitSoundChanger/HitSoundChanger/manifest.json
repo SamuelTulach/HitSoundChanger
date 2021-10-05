@@ -1,11 +1,11 @@
 ﻿{
-  "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
+  "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
   "author": "Otiosum/Kyle1413",
   "description": "Allows you to change the sounds used for cutting notes and bad hits",
-  "gameVersion": "1.17.0",
+  "gameVersion": "1.18.0",
   "id": "HitSoundChanger",
   "name": "HitSoundChanger",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "dependsOn": {
     "BSIPA": "^4.2.0",
     "BS Utils": "^1.11.0",

@@ -6,12 +6,12 @@ namespace HitSoundChanger.UI
 {
     internal class SoundListFlowCoordinator : FlowCoordinator
     {
-        private SoundListView _soundListView;
+        private SoundList _soundListView;
 
         public void Awake()
         {
             if (_soundListView == null)
-                _soundListView = BeatSaberUI.CreateViewController<SoundListView>();
+                _soundListView = BeatSaberUI.CreateViewController<SoundList>();
         }
 
         protected override void DidActivate(bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling)
@@ -27,7 +27,7 @@ namespace HitSoundChanger.UI
             }
             catch (Exception ex)
             {
-                Utilities.Logging.Log.Error(ex);
+                HitSoundChanger.Plugin.Log.Error(ex);
             }
         }
 
